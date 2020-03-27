@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Favorites</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +12,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render partial: 'layouts/shared/header' %>
+    <section class="section">
+      <%= yield %>
+    </section>
+    <%= render partial: 'layouts/shared/footer' %>
   </body>
 </html>
