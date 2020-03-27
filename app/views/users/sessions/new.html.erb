@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="columns">
+    <div class="column is-6 is-offset-3">
+      <h2 class="title h2 has-text-weight-light has-text-centered">Faça seu login</h2>
+      <%= render partial: 'shared/flash' %>
+      <div class="box">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email, class: 'label' %>
+            <div class="control">
+              <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input' %>
+            </div>
+          </div>
+
+          <div class="field">
+            <%= f.label :password, class: 'label' %>
+            <div class="control">
+              <%= f.password_field :password, autocomplete: 'current-password', class: 'input' %>
+            </div>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <hr>
+
+          <div class="actions">
+            <%= f.submit 'Entrar', class: 'button is-primary is-fullwidth has-text-weight-bold' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
