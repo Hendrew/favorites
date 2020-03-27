@@ -5,3 +5,19 @@ html, body {
 .section {
   background-color: $white;
 }
+
+.control {
+  .select {
+    width: 100%;
+    select {
+      width: inherit;
+    }
+  }
+}
+
+.field {
+  .is_required::after {
+    content: " *";
+    color: red;
+  }
+}

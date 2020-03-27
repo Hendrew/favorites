@@ -14,10 +14,6 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <% if user_signed_in? %>
     <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
-
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
           Links
@@ -39,6 +35,7 @@
     </div>
 
     <div class="navbar-end">
+      <%= link_to current_user.email, edit_user_registration_path, alt: 'editar perfil', class: 'navbar-item' %>
       <div class="navbar-item">
         <div class="buttons">
           <%= link_to destroy_user_session_path, alt: 'sair', class: 'button is-light', method: :delete do %>
