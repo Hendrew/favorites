@@ -1,0 +1,6 @@
+<% flash.each do |key, value| %>
+  <div class="notification is-lighter <%= flash_message_class(key) %>">
+    <button class="delete" onclick="this.parentElement.style.display = 'none'"></button>
+    <%= value %>
+  </div>
+<% end %>
