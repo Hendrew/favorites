@@ -1,0 +1,50 @@
+<% content_for :page_title, 'Categorias' %>
+
+<div class="container">
+  <div class="columns">
+    <div class="column is-3">
+      <h2 class="title is-2 has-text-weight-light">Categorias</h2>
+    </div>
+
+    <div class="column is-9 has-text-right">
+      <%= link_to 'Nova', new_category_path, alt: 'nova', class: 'button is-primary is-outlined' %>
+    </div>
+  </div>
+
+  <hr>
+  <br>
+
+  <%= render partial: 'shared/flash' %>
+
+  <div class="table-responsive">
+    <table class="table is-bordered is-fullwidth table-vertical-align-center">
+      <thead>
+        <tr>
+          <th>#</th> <th>Nome</th> <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.id %></td>
+          <td><%= category.name %></td>
+          <td>
+            <div class="buttons">
+              <%= link_to 'Subcategorias', category_subcategories_path(category), alt: 'subcategorias', class: 'button is-info', title: 'Subcategorias' %>
+              <%= link_to 'Editar', edit_category_path(category), alt: 'editar', class: 'button is-warning', title: 'Editar' %>
+              <%= link_to 'Excluir', category_path(category), method: :delete, data: { confirm: 'Você tem certeza?' }, alt: 'excluir', class: 'button is-danger', title: 'Excluir' %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+
+        <% if @categories.length == 0 %>
+        <tr>
+          <td colspan="3">Nenhuma categoria encontrada.</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

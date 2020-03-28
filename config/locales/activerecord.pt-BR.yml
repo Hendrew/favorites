@@ -4,32 +4,19 @@ pt-BR:
       user:
         one: 'Usuário'
         other: 'Usuários'
-      dog:
-        one: 'Cão'
-        other: 'Cães'
+      category:
+        one: 'Categoria'
+        other: 'Categorias'
+      subcategory:
+        one: 'Subcategoria'
+        other: 'Subcategorias'
     attributes:
       user:
-        name: 'Nome'
         email: 'E-mail'
-        telephone: 'Telefone'
-        state: 'Estado'
-        city: 'Cidade'
         password: 'Senha'
         password_confirmation: 'Confirmar senha'
         current_password: 'Senha atual'
-      dog:
+      category:
         name: 'Nome'
-        birth: 'Ano de nascimento'
-        breed: 'Raça'
-        sex: 'Sexo'
-        temperament: 'Temperamento'
-        vaccinated: 'Vacinado'
-        image: 'Imagem'
-        length: 'Comprimento'
-        weight: 'Peso'
-        size: 'Tamanho'
-        pelage: 'Pelagem'
-        pelage_color: 'Cor da pelagem'
-        mother_name: 'Nome da mãe'
-        father_name: 'Nome do pai'
-        register: 'Número de registro'
+      subcategory:
+        name: 'Nome'

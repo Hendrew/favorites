@@ -1,0 +1,47 @@
+<% content_for :page_title, "#{page} Categoria" %>
+
+<div class="container">
+  <div class="columns">
+    <div class="column is-5">
+      <h2 class="title is-2 has-text-weight-light"><%= page %> Categoria</h2>
+    </div>
+    <div class="column is-7 has-text-right">
+      <%= link_to 'Voltar', categories_path, alt: 'voltar', class: 'button' %>
+    </div>
+  </div>
+  <hr>
+  <br>
+
+  <%= render partial: 'shared/flash' %>
+
+  <% if @category.errors.any? %>
+  <div class="notification is-danger">
+    <h3 class="title is-4">
+      <%= pluralize(@category.errors.count, 'erro', 'erros') %>
+      <%= @category.errors.count > 1 ? 'proibiram' : 'proibiu' %> esta categoria de ser salva:
+    </h3>
+
+    <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="box">
+    <%= form_with model: [@category], local: true do |f| %>
+      <div class="field">
+        <%= f.label :name, class: 'label' %>
+        <div class="control">
+          <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'input' %>
+        </div>
+      </div>
+
+      <br>
+
+      <%= f.submit nil, class: 'button is-primary' %>
+      <%= link_to 'Cancelar', categories_path, alt: 'cancelar', class: 'button is-light' %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<% content_for :page_title, 'Subcategorias' %>
+
+<div class="container">
+  <div class="columns">
+    <div class="column is-8">
+      <h2 class="title is-2 has-text-weight-light">Subcategorias</h2>
+      <h3 class="subtitle is-4 has-text-weight-bold has-text-grey-light">Para a categoria <%= @category.name %></h3>
+    </div>
+
+    <div class="column is-4 has-text-right">
+      <%= link_to 'Voltar', categories_path, alt: 'voltar', class: 'button' %>
+      <%= link_to 'Nova', new_category_subcategory_path, alt: 'nova', class: 'button is-primary is-outlined' %>
+    </div>
+  </div>
+
+  <hr>
+  <br>
+
+  <%= render partial: 'shared/flash' %>
+
+  <div class="table-responsive">
+    <table class="table is-bordered is-fullwidth table-vertical-align-center">
+      <thead>
+        <tr>
+          <th>#</th> <th>Nome</th> <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @subcategories.each do |subcategory| %>
+        <tr>
+          <td><%= subcategory.id %></td>
+          <td><%= subcategory.name %></td>
+          <td>
+            <div class="buttons">
+              <%= link_to 'Editar', edit_category_subcategory_path(@category, subcategory), alt: 'editar', class: 'button is-warning', title: 'Editar' %>
+              <%= link_to 'Excluir', category_subcategory_path(@category, subcategory), method: :delete, data: { confirm: 'Você tem certeza?' }, alt: 'excluir', class: 'button is-danger', title: 'Excluir' %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+
+        <% if @subcategories.length == 0 %>
+        <tr>
+          <td colspan="3">Nenhuma subcategoria encontrada.</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<% content_for :page_title, "#{page} Subcategoria" %>
+
+<div class="container">
+  <div class="columns">
+    <div class="column is-5">
+      <h2 class="title is-2 has-text-weight-light"><%= page %> Subcategoria</h2>
+      <h3 class="subtitle is-4 has-text-weight-bold has-text-grey-light">Para a categoria <%= @category.name %></h3>
+    </div>
+    <div class="column is-7 has-text-right">
+      <%= link_to 'Voltar', category_subcategories_path, alt: 'voltar', class: 'button' %>
+    </div>
+  </div>
+  <hr>
+  <br>
+
+  <%= render partial: 'shared/flash' %>
+
+  <% if @subcategory.errors.any? %>
+  <div class="notification is-danger">
+    <h3 class="title is-4">
+      <%= pluralize(@subcategory.errors.count, 'erro', 'erros') %>
+      <%= @subcategory.errors.count > 1 ? 'proibiram' : 'proibiu' %> esta subcategoria de ser salva:
+    </h3>
+
+    <ul>
+      <% @subcategory.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="box">
+    <%= form_with model: [@category, @subcategory], local: true do |f| %>
+      <div class="field">
+        <%= f.label :name, class: 'label' %>
+        <div class="control">
+          <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'input' %>
+        </div>
+      </div>
+
+      <br>
+
+      <%= f.submit nil, class: 'button is-primary' %>
+      <%= link_to 'Cancelar', category_subcategories_path, alt: 'cancelar', class: 'button is-light' %>
+    <% end %>
+  </div>
+</div>

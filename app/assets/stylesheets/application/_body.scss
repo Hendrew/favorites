@@ -21,3 +21,13 @@ html, body {
     color: red;
   }
 }
+
+table {
+  tbody {
+    tr {
+      td {
+        vertical-align: middle !important;
+      }
+    }
+  }
+}

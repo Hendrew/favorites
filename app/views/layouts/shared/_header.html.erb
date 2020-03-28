@@ -16,22 +16,14 @@
     <div class="navbar-start">
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">
-          Links
+          Categorias
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
-            Novo
-          </a>
-          <a class="navbar-item">
-            Listar
-          </a>
+          <%= link_to 'Nova', new_category_path, alt: 'nova categoria', class: 'navbar-item' %>
+          <%= link_to 'Listar', categories_path, alt: 'categorias', class: 'navbar-item' %>
         </div>
       </div>
-
-      <a class="navbar-item">
-        Categorias
-      </a>
     </div>
 
     <div class="navbar-end">
