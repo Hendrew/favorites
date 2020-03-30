@@ -14,3 +14,16 @@ document.addEventListener("turbolinks:load", function () {
     }
   }
 })
+
+document.addEventListener("turbolinks:load", function () {
+  const filterButton = document.querySelector("#filter_button")
+  const filterBox = document.querySelector("#filter_box")
+
+  if (filterButton != undefined) {
+    filterButton.onclick = function () {
+      filterBox.classList.toggle("show_filter_box")
+
+      return false
+    }
+  }
+})

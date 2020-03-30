@@ -4,7 +4,15 @@ class FavoritesController < ApplicationController
   before_action :set_subcategories, only: %i[index new create edit update]
 
   def index
-    @favorites = current_user.favorites.order(id: :desc).includes(:category).includes(:subcategory)
+    if params[:filter].present?
+      @favorites = Favorite.filter(params.slice(
+        :by_title,
+        :category_id,
+        :subcategory_id
+      )).where(user: current_user).order(id: :desc).includes(:category).includes(:subcategory)
+    else
+      @favorites = current_user.favorites.order(id: :desc).includes(:category).includes(:subcategory)
+    end
   end
 
   def new
@@ -64,7 +72,9 @@ class FavoritesController < ApplicationController
   end
 
   def set_subcategories
-    if params[:favorite].present?
+    if params[:category_id].present?
+      category_id = params[:category_id]
+    elsif params[:favorite].present?
       category_id = params[:favorite][:category_id]
     elsif @favorite.present?
       category_id = @favorite.category_id

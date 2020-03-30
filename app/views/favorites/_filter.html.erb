@@ -1,0 +1,45 @@
+<div class="box show_filter_box" id="filter_box">
+  <%= form_with url: favorites_path, method: :get, local: true do |f| %>
+    <%= f.hidden_field :filter, value: true %>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <%= f.label :by_title, 'Título', class: 'label' %>
+          <div class="control">
+            <%= f.text_field :by_title, autofocus: true, autocomplete: 'by_title', class: 'input', value: params[:by_title], placeholder: 'Busque pelo título' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="field">
+          <%= f.label :category_id, 'Categoria', class: 'label' %>
+          <div class="control">
+            <div class="select">
+              <%= select_tag(:category_id, options_for_select(@categories, params[:category_id]), { prompt: 'Escolher', id: 'favorite_category_id' }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="field">
+          <%= f.label :subcategory_id, 'Subcategoria', class: 'label' %>
+          <div class="control">
+            <div class="select">
+              <%= select_tag(:subcategory_id, options_for_select(@subcategories, params[:subcategory_id]), { prompt: 'Escolher', id: 'favorite_subcategory_id' }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="buttons">
+      <%= f.submit 'Buscar', class: 'button is-primary' %>
+
+      <%= link_to('Limpar Resultado(s)', favorites_path, alt: 'limpar resultados', class: 'button is-light') if params[:filter].present? %>
+    </div>
+  <% end %>
+</div>

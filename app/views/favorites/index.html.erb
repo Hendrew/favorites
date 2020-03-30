@@ -2,11 +2,15 @@
 
 <div class="container">
   <div class="columns">
-    <div class="column is-3">
+    <div class="column is-6">
       <h2 class="title is-2 has-text-weight-light">Meus Favoritos</h2>
+      <% if params[:filter].present? %>
+      <h3 class="subtitle is-4 has-text-weight-bold has-text-grey-light">Sua pesquisa retornou <%= @favorites.length %> resultado(s)</h3>
+      <% end %>
     </div>
 
-    <div class="column is-9 has-text-right">
+    <div class="column is-6 has-text-right">
+      <button class="button is-light" id="filter_button">Filtro</button>
       <%= link_to 'Novo', new_favorite_path, alt: 'novo', class: 'button is-primary is-outlined' %>
     </div>
   </div>
@@ -15,6 +19,7 @@
   <br>
 
   <%= render partial: 'shared/flash' %>
+  <%= render 'filter' %>
 
   <div class="table-container">
     <table class="table is-bordered is-fullwidth table-vertical-align-center">
