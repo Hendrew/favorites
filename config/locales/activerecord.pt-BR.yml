@@ -10,6 +10,9 @@ pt-BR:
       subcategory:
         one: 'Subcategoria'
         other: 'Subcategorias'
+      favorite:
+        one: 'Favorito'
+        other: 'Favoritos'
     attributes:
       user:
         email: 'E-mail'
@@ -20,3 +23,10 @@ pt-BR:
         name: 'Nome'
       subcategory:
         name: 'Nome'
+      favorite:
+        title: 'Título'
+        link: 'Link'
+        category_id: 'Categoria'
+        category: 'Categoria'
+        subcategory_id: 'Subcategoria'
+        subcategory: 'Subcategoria'

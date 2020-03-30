@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_110807) do
+ActiveRecord::Schema.define(version: 2020_03_28_120954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 2020_03_28_110807) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.string "link", default: "", null: false
+    t.bigint "category_id", null: false
+    t.bigint "subcategory_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_favorites_on_category_id"
+    t.index ["subcategory_id"], name: "index_favorites_on_subcategory_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "subcategories", force: :cascade do |t|
@@ -46,6 +59,9 @@ ActiveRecord::Schema.define(version: 2020_03_28_110807) do
   end
 
   add_foreign_key "categories", "users"
+  add_foreign_key "favorites", "categories"
+  add_foreign_key "favorites", "subcategories"
+  add_foreign_key "favorites", "users"
   add_foreign_key "subcategories", "categories"
   add_foreign_key "subcategories", "users"
 end

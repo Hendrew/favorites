@@ -1,0 +1,78 @@
+<% content_for :page_title, "#{page} Favorito" %>
+
+<div class="container">
+  <div class="columns">
+    <div class="column is-5">
+      <h2 class="title is-2 has-text-weight-light"><%= page %> Favorito</h2>
+    </div>
+    <div class="column is-7 has-text-right">
+      <%= link_to 'Voltar', favorites_path, alt: 'voltar', class: 'button' %>
+    </div>
+  </div>
+  <hr>
+  <br>
+
+  <%= render partial: 'shared/flash' %>
+
+  <% if @favorite.errors.any? %>
+  <div class="notification is-danger">
+    <h3 class="title is-4">
+      <%= pluralize(@favorite.errors.count, 'erro', 'erros') %>
+      <%= @favorite.errors.count > 1 ? 'proibiram' : 'proibiu' %> este favorito de ser salvo:
+    </h3>
+
+    <ul>
+      <% @favorite.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="box">
+    <%= form_with model: [@favorite], local: true do |f| %>
+      <div class="field">
+        <%= f.label :title, class: 'label is_required' %>
+        <div class="control">
+          <%= f.text_field :title, autofocus: true, autocomplete: 'title', class: 'input' %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :link, class: 'label is_required' %>
+        <div class="control">
+          <%= f.text_field :link, autofocus: true, autocomplete: 'link', class: 'input' %>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column is-6">
+          <div class="field">
+            <%= f.label(:category_id, 'Categoria', class: 'label is_required') %>
+            <div class="control">
+              <div class="select">
+                <%= f.select(:category_id, @categories, { prompt: 'Escolher' }) %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column is-6">
+          <div class="field">
+            <%= f.label(:subcategory_id, 'Subcategoria', class: 'label') %>
+            <div class="control">
+              <div class="select">
+                <%= f.select(:subcategory_id, @subcategories, { prompt: 'Escolher' }) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <%= f.submit nil, class: 'button is-primary' %>
+      <%= link_to 'Cancelar', favorites_path, alt: 'cancelar', class: 'button is-light' %>
+    <% end %>
+  </div>
+</div>

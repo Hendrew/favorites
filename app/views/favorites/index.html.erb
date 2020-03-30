@@ -1,0 +1,54 @@
+<% content_for :page_title, 'Favoritos' %>
+
+<div class="container">
+  <div class="columns">
+    <div class="column is-3">
+      <h2 class="title is-2 has-text-weight-light">Meus Favoritos</h2>
+    </div>
+
+    <div class="column is-9 has-text-right">
+      <%= link_to 'Novo', new_favorite_path, alt: 'novo', class: 'button is-primary is-outlined' %>
+    </div>
+  </div>
+
+  <hr>
+  <br>
+
+  <%= render partial: 'shared/flash' %>
+
+  <div class="table-container">
+    <table class="table is-bordered is-fullwidth table-vertical-align-center">
+      <thead>
+        <tr>
+          <th>#</th> <th>Título</th> <th>Categoria</th> <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @favorites.each do |favorite| %>
+        <tr>
+          <td><%= favorite.id %></td>
+          <td><%= favorite.title %></td>
+          <td>
+            <%= favorite.category.name %>
+            <%= " - #{favorite.subcategory.name}" if favorite.subcategory.present? %>
+          </td>
+          <td>
+            <div class="buttons">
+              <a href="<%= favorite.link %>" alt="<%= favorite.title.downcase %>" class="button is-info" target="_blank">Abrir Link</a>
+              <%= link_to 'Editar', edit_favorite_path(favorite), alt: 'editar', class: 'button is-warning', title: 'Editar' %>
+              <%= link_to 'Excluir', favorite_path(favorite), method: :delete, data: { confirm: 'Você tem certeza?' }, alt: 'excluir', class: 'button is-danger', title: 'Excluir' %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+
+        <% if @favorites.length == 0 %>
+        <tr>
+          <td colspan="4">Nenhum favorito encontrado.</td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
